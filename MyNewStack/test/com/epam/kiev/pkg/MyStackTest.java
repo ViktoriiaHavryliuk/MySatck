@@ -33,55 +33,44 @@ public class MyStackTest {
 
 	
 	@Test //проверка empty
-	public void testEmpty() {
-		stack.empty();
-		try{
-			assertEquals(0, stack.position);	
-		} catch (AssertionError e){
-			   log.error ("Stack isn't empty!");
-		}
-		
+	public void testThatStackIsEmpty() {
+        assertTrue(stack.empty());
 	}
 	
 	@Test //проверка push
-	public void testPush() {
-		stack.push(11);
-		stack.push(1);
-		try{
-			assertThat(stack.push(11), is(11));			
-		} catch (AssertionError e){
-			   log.error ("Method push work incorrect!");
-		}
+	public void testThatCheksPushMetod() {
+		int somerandomValue1 = 11;
+		int somerandomValue2 = 42;
+		stack.push(somerandomValue1);
+		stack.push(somerandomValue2);
+		assertThat(stack.push(somerandomValue2), is(somerandomValue2));			
 	}
 	@Test //проверка peek
-	public void testPeek() {
-		stack.push(11);
-		stack.push(1);
-		stack.push(20);
-		try{	
-			assertThat(stack.peek(), is(20));	
-		} catch (AssertionError e){
-			   log.error ("Method peek work incorrect!");
-		}
+	public void testCheksPeekMethod() {
+		int somerandomValue1 = 11;
+		int somerandomValue2 = 42;
+		stack.push(somerandomValue1);
+		stack.push(somerandomValue1);
+		stack.push(somerandomValue2);
+		assertThat(stack.peek(), is(somerandomValue2));	
 	}
 	@Test //проверка pop
-	public void testPop() {
-		stack.push(11);
-		stack.push(18);
-		stack.push(12);
+	public void testThatChecksPopMethod() {
+		int somerandomValue1 = 11;
+		int somerandomValue2 = 42;
+		stack.push(somerandomValue1);
+		stack.push(somerandomValue2);
+		stack.push(somerandomValue1);
 		stack.pop();
-		try{
-			
-			assertThat(stack.peek(), is(18));		
-		} catch (AssertionError e){
-			   log.error ("Method pop work incorrect!");
-		}
+		ssertThat(stack.peek(), is(somerandomValue2));		
 	}
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void tst_IndexOutOfBounds()
 	{
-		for (int i=0; i<=12; i++){
-		stack.push(1);
+		int somerandomValue1 = 11;
+		int maxStackSize = 10;
+		for (int i=0; i<=(maxStackSize+1); i++){
+		stack.push(somerandomValue1);
 		}
 	}
 	
@@ -89,17 +78,11 @@ public class MyStackTest {
 	public void tst_EmptyStackPeek(){
 		stack.empty();
 		stack.peek();
-		
 	}
 	
 	@Test(expected=EmptyStackException.class)
 	public void tst_EmptyStackPop(){
 		stack.empty();
 		stack.pop();
-		
 	}
-	
-
-	
-
 }
